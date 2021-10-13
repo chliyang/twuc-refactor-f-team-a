@@ -1,24 +1,30 @@
 ## Background
-This is a program to calculate and print a statement of a customer's charges at a video store. 
-The program is told which movies a customer rented and for how long. 
-It then calculates the charges, 
-which depend on how long the movie is rented,
-and identifies the type movie. 
-There are three kinds of movies: regular, children's, and new releases. 
-In addition to calculating charges, the statement also computes frequent renter points,
-which vary depending on whether the film is a new release.
+有一个租赁电影的商店，需要将客户租赁电影的费用清单打印出来。
+费用清单包括：客户姓名，电影名称、单部电影租赁费用、总费用、租赁积分。
+电影一共有三种类型：REGULAR、NEW_RELEASE、CHILDREN
+单部电影租赁费用与电影类型的基础费用及租赁时长相关，比如：
+1. 对于REGULAR类型电影，每部基础费用为2元，超过2天，超过的天数每部每天1.5元
+2. 对于NEW_RELEASE类型电影，无基础费用，超过的天数每部每天的价格为3元
+3. 对于CHILDREN类型电影，每部基础费用为1.5元，超过3天，超过的天数每部每天1.5元
+详细可参照已有Customer类的测试
 
-## New Requirement I
-For "NEW RELEASE" movies, if days rented longer than(or equal) 5 days, customer should not get any frequent renter points.
-More details has been documented in CustomerTest.should_return_statement_when_rent_new_release_movie_for_5_day.
+租赁积分的计算规则为：
+1. 每部电影租赁有基础积分1分
+2. 如果电影包含NEW_RELEASE类型电影，且租赁时间超过1天，每部额外会有1个积分
 
+## 需求一：
+对于NEW_RELEASE类型电影，如果租赁时长大于等于5天，将没有租赁积分。详细请参考测试should_return_statement_when_rent_new_release_movie_for_5_day
 
-## New Requirement II
-Now we want to add new kind of movies: Action.
+## 需求二：
+现在需要加入新的电影类型：Action
+1. 每部基础费用为10元
+2. 租赁时长3天，无基础费用，每部每天4元
+3. 租赁时长大于3天，每部会有2个积分
 
-For Action movie, if days rented longer than 2 days, we would like to make the total price double.
-User will get 2 frequent renter points for each action movies. 
-
+举例说明：
+1. 租赁ACTION类型电影1部2天，每部费用为10元，总费用为10元，无租赁积分
+2. 租赁ACTION类型电影1部4天，每部费用为16天，总费用为16元，租赁积分2分
+3. 租赁ACTION类型电影2部，1部1天，1部5天，第一部费用为10元，第二部费用为20元，总费用为30元，租赁积分2分
 
 ## How to Run
 In your terminal
